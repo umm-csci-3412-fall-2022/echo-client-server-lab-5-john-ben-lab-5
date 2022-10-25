@@ -34,9 +34,10 @@ public class EchoClient {
       }
 
       //Final cleanup
-      inStream.close();
+      //finish handling anything left in the buffer
       outStream.flush();
       socket.shutdownOutput();
+      System.out.write(inStream.readAllBytes());
 
     } catch (ConnectException ce) {
       System.out.println("We were unable to connect to server " + hostname);
